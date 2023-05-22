@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class RoomNodeGraph : EditorWindow
 
     private void OnGUI()
     {
-        if (currentRoomNodeGraph != null)
+        if (currentRoomNodeGraph is not null)
         {
             ProcessEvents(Event.current);
             DrawRoomNodes();
@@ -61,7 +62,24 @@ public class RoomNodeGraph : EditorWindow
 
     private void ProcessEvents(Event current)
     {
-        ProcessRoomNodeGraphEvents(current);
+        if (currentRoomNode is null || currentRoomNode.isLeftMouseDrag == false)
+        {
+            currentRoomNode = IsMouseOverNode(current);
+        }
+
+        if (currentRoomNode is null)
+        {
+            ProcessRoomNodeGraphEvents(current);
+        }
+        else
+        {
+            currentRoomNode.ProcessEvents(current);
+        }
+    }
+
+    private RoomNodeSO IsMouseOverNode(Event e)
+    {
+        return currentRoomNodeGraph.roomList.FirstOrDefault(t => t.rect.Contains(e.mousePosition));
     }
 
     private void ProcessRoomNodeGraphEvents(Event e)
