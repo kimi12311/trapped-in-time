@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4922101166963845407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590148839a700064aa46b77ec9e4a6f0, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  id: 3b238646-7a57-475f-8161-541d5389d553
+  parentRoomNodeIDList: []
+  childRoomNodeIDList: []
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: 2d04cddd4cf0dfd4eb04477ae8d44b8c, type: 2}
+  RoomNodeTypeList: {fileID: 11400000, guid: d19d1c59a9bac0a48b968d30d929128b, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 1
+    y: 0
+    width: 160
+    height: 75
+  isLeftMouseDrag: 0
+  isSelected: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,6 +41,34 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 0}
   roomList:
   - {fileID: 6159414128836811679}
+  - {fileID: 3250220662008585951}
+  - {fileID: -4922101166963845407}
+--- !u!114 &3250220662008585951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590148839a700064aa46b77ec9e4a6f0, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  id: 6794a28f-9ec5-436a-9179-4f785ba975a5
+  parentRoomNodeIDList: []
+  childRoomNodeIDList: []
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: 2d04cddd4cf0dfd4eb04477ae8d44b8c, type: 2}
+  RoomNodeTypeList: {fileID: 11400000, guid: d19d1c59a9bac0a48b968d30d929128b, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 1
+    y: 0
+    width: 160
+    height: 75
+  isLeftMouseDrag: 0
+  isSelected: 1
 --- !u!114 &6159414128836811679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +89,9 @@ MonoBehaviour:
   RoomNodeTypeList: {fileID: 11400000, guid: d19d1c59a9bac0a48b968d30d929128b, type: 2}
   rect:
     serializedVersion: 2
-    x: 271
-    y: 295
+    x: 1
+    y: 0
     width: 160
     height: 75
+  isLeftMouseDrag: 0
+  isSelected: 0

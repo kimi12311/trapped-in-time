@@ -27,7 +27,6 @@ public class RoomNodeSO : ScriptableObject
             name = "Node";
             roomNodeGraph = nodeGraph;
             roomNodeType = type;
-
             RoomNodeTypeList = GameResources.Instance.RoomNodeTypeList;
         }
 
@@ -38,10 +37,8 @@ public class RoomNodeSO : ScriptableObject
             var selection = EditorGUILayout.Popup("", RoomNodeTypeList.list.FindIndex(x => x == roomNodeType), 
                 GetNames());
             roomNodeType = RoomNodeTypeList.list[selection];
-
             if (EditorGUI.EndChangeCheck())
                 EditorUtility.SetDirty(this);
-            
             GUILayout.EndArea();
         }
 
@@ -55,7 +52,6 @@ public class RoomNodeSO : ScriptableObject
                     rooms[i] = RoomNodeTypeList.list[i].roomNodeTypeName;
                 }
             }
-
             return rooms;
         }
 
@@ -79,7 +75,8 @@ public class RoomNodeSO : ScriptableObject
         {
             if (e.button == 0)
             {
-                LeftClickDown();
+                // Selection.activeObject = this;
+                isSelected = !isSelected;
             }
         }
 
@@ -87,7 +84,10 @@ public class RoomNodeSO : ScriptableObject
         {
             if (e.button == 0)
             {
-                LeftClickUp();
+                if (isLeftMouseDrag)
+                {
+                    isLeftMouseDrag = false;
+                }
             }
         }
 
@@ -95,35 +95,15 @@ public class RoomNodeSO : ScriptableObject
         {
             if (e.button == 0)
             {
-                ProcessLeftDrag(e);
+                isLeftMouseDrag = true;
+                DragNode(e.delta);
+                GUI.changed = true;
             }
-        }
-
-        private void LeftClickDown()
-        {
-            Selection.activeObject = this;
-            isSelected = !isSelected;
-        }
-
-        private void LeftClickUp()
-        {
-            if (isLeftMouseDrag)
-            {
-                isLeftMouseDrag = false;
-            }
-        }
-
-        private void ProcessLeftDrag(Event e)
-        {
-            isLeftMouseDrag = true;
-
-            DragNode(e.delta);
-            GUI.changed = true;
         }
 
         private void DragNode(Vector2 mouse)
         {
-            rect.position = mouse;
+            rect.position += mouse;
             EditorUtility.SetDirty(this);
         }
         #endif
