@@ -32,6 +32,19 @@ public class RoomNodeSO : ScriptableObject
 
         public void Draw(GUIStyle style)
         {
+            if (isLeftMouseDrag)
+            {
+                style = new GUIStyle
+                {
+                    normal =
+                    {
+                        background = EditorGUIUtility.Load("node4") as Texture2D,
+                        textColor = Color.white,
+                    },
+                    padding = new RectOffset(style.padding.left, style.padding.right, style.padding.top, style.padding.bottom),
+                    border = new RectOffset(style.border.left, style.border.right, style.border.top, style.border.bottom),
+                };
+            }
             GUILayout.BeginArea(rect, style);
             EditorGUI.BeginChangeCheck();
             var selection = EditorGUILayout.Popup("", RoomNodeTypeList.list.FindIndex(x => x == roomNodeType), 
@@ -75,7 +88,7 @@ public class RoomNodeSO : ScriptableObject
         {
             if (e.button == 0)
             {
-                // Selection.activeObject = this;
+                Selection.activeObject = this;
                 isSelected = !isSelected;
             }
         }
